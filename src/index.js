@@ -34,6 +34,3 @@ logBtn.addEventListener('click', () =>  {
         })
     })
 })
-
-
-

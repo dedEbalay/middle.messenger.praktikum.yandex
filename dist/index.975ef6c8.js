@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"ShInH":[function(require,module,exports) {
+})({"glGcU":[function(require,module,exports) {
 "use strict";
 var global = arguments[3];
 var HMR_HOST = null;
@@ -577,21 +577,9 @@ exports.default = (0, _loginDefault.default);
 },{"./login":"dnRSK","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dnRSK":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-// import Handlebars from 'handlebars';
 var _loginHbs = require("./login.hbs");
 var _loginHbsDefault = parcelHelpers.interopDefault(_loginHbs);
 var _loginCss = require("./login.css");
-// export default function LoginPage() {
-//     const data = {
-//         title: 'Welcome back, товарищ!',
-//         mailPlaceholder: 'любительгулага@ссылка.рф',
-//         passwordPlaceholder: '************',
-//     }
-//     const template = Handlebars.compile(tpl(data))(data);
-//         //   render = template(data);
-//     document.querySelector('#root').innerHTML  =  template
-// }
-// Handlebars.registerPartial('login', tpl);
 exports.default = (props = {})=>{
     return (0, _loginHbsDefault.default)(props);
 };
@@ -12017,20 +12005,9 @@ exports.default = (0, _registrationDefault.default);
 },{"./registration":"7HUYG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7HUYG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-// import Handlebars from 'handlebars';
 var _registrationHbs = require("./registration.hbs");
 var _registrationHbsDefault = parcelHelpers.interopDefault(_registrationHbs);
 var _registrationCss = require("./registration.css");
-// const data = {
-//     title: 'We are glad that you decided to join us, товарищ!',
-//     nameTitle: 'First name of товарищ',
-//     secondNameTitle: 'Second name of товарищ',
-//     loginTitle: 'Login of товарищ',
-//     mailTitle: 'Email of товарищ',
-//     passwordTitle: 'Password of товарищ',
-//     phoneTitle: 'Phone of товарищ'
-// }
-// Handlebars.registerPartial('registration', tpl);
 exports.default = (props = {})=>{
     return (0, _registrationHbsDefault.default)(props);
 };
@@ -12167,12 +12144,6 @@ parcelHelpers.defineInteropFlag(exports);
 var _chatHbs = require("./chat.hbs");
 var _chatHbsDefault = parcelHelpers.interopDefault(_chatHbs);
 var _chatsCss = require("./chats.css");
-const data = {
-    userName: "Любимый",
-    lastMessageDate: "4:20",
-    messageText: "Все твои друзья уже присоединилсь к ГУЛАГ..",
-    fullMessageText: "Все твои друзья уже присоединились к ГУЛАГу, чего же ты еще ждешь!?"
-};
 exports.default = (props = {})=>{
     return (0, _chatHbsDefault.default)(props);
 };
@@ -12248,12 +12219,12 @@ const templateFunction = (0, _handlebarsDefault.default).template({
                     "column": 71
                 }
             }
-        }) : helper)) + '</div>\r\n    </div>\r\n    <div class="chats-text-field">\r\n        <input type="text" placeholder="Отправить донос..." class="chats-text-field__input">\r\n    </div>\r\n</div>';
+        }) : helper)) + '</div>\r\n    </div>\r\n    <div class="chats-text-field">\r\n        <input type="text" placeholder="Отправить донос..." class="chats-text-field__input">\r\n    </div>\r\n</div>\r\n';
     },
     "useData": true
 });
 exports.default = templateFunction;
 
-},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6VCry":[function() {},{}]},["ShInH","8lqZg"], "8lqZg", "parcelRequirefc40")
+},{"handlebars":"i0QfX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6VCry":[function() {},{}]},["glGcU","8lqZg"], "8lqZg", "parcelRequirefc40")
 
 //# sourceMappingURL=index.975ef6c8.js.map
