@@ -1,0 +1,11 @@
+/* @import './templates/login/login.css';
+@import './templates/registration/registration.css';
+@import './templates/chats/chats.css'; */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter',  sans-serif;
+}
+

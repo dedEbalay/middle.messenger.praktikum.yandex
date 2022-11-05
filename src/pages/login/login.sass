@@ -1,0 +1,48 @@
+@import '../../mixins'
+    
+.login
+    height: 100vh
+    display: flex
+    align-items: center
+    justify-content: center
+    @include primaryBG
+    &-modal
+        height: 512px
+        width: 845px
+        @include lightBG
+        padding: 49px 90px
+        font-size: 64px
+        border-radius: 10px
+        &__title
+            margin-bottom: 41px
+            text-align: center
+        &__input
+            display: block
+            width: 100%
+            height: 67px
+            background-color: #EDF6F5
+            @include primaryBR
+            border-radius: 6px
+            color: black
+            font-size: 32px
+            line-height: 39px
+            padding: 14px 21px
+            margin-bottom: 11px
+        &__buttons  
+            display: flex
+            justify-content: space-between
+            &-signup
+                @include primaryBG
+                color: #E3E2BD
+            &-signin
+                background-color: #EB9191
+                color: #2D2F2E
+        &__button
+            cursor: pointer
+            width: 327px
+            height: 67px
+            @include primaryBR
+            border-radius: 6px
+            padding: 15px 25px
+            font-size: 32px
+            
