@@ -1,6 +1,22 @@
-import tpl from './login.hbs';
-import './login.css';
+// import tpl from './login.hbs';
+// import './login.css';
 
-export default (props = {}) =>  {
-    return tpl(props);
-}
+
+// export default (props = {}) =>  {
+    //     return tpl(props);
+    // }
+    
+const loginTpl = `
+    <div class="login">
+        <div class="login-modal">
+            <div class="login-modal__title">{{ title }}</div>
+            <input class="login-modal__mail-input login-modal__input" placeholder="{{ mailPlaceholder }}"></input>
+            <input class="login-modal__password-input login-modal__input" placeholder="{{ passwordPlaceholder }}"></input>
+            <div class="login-modal__buttons">
+                <button class="login-modal__buttons-signup login-modal__button">Sign Up</button>
+                <button class="login-modal__buttons-signin login-modal__button">Sign In</button>
+            </div>
+        </div>
+    </div>
+`
+export default loginTpl;

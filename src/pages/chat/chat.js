@@ -1,6 +1,30 @@
-import tpl from './chat.hbs';
-import './chats.css'
+// import tpl from './chat.hbs';
+// import './chats.css'
 
-export default (props = {}) =>  {
-    return tpl(props);
-}
+// export default (props = {}) =>  {
+//     return tpl(props);
+// }
+
+const chatTpl = `
+    <div class="chats">
+        <div class="chats-field">
+            <div class="chats-field-user">
+                <div class="chats-field-user__avatar chats-avatar"></div>
+                <div class="chats-field-user__settings"></div>
+            </div>
+            <div class="chats-field-item">
+                <div class="chats-field-item__avatar chats-avatar"></div>
+                <div class="chats-field-item__title">{{ userName }}</div>
+                <div class="chats-field-item__date">{{ lastMessageDate }}</div>
+                <div class="chats-field-item__text">{{ messageText }}</div>
+            </div>
+        </div>
+        <div class="chats-message-field">
+            <div class="chats-message-field__message">{{ fullMessageText }}</div>
+        </div>
+        <div class="chats-text-field">
+            <input type="text" placeholder="Отправить донос..." class="chats-text-field__input">
+        </div>
+    </div>
+`
+export default chatTpl;

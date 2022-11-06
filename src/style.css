@@ -1,6 +1,6 @@
-/* @import './templates/login/login.css';
-@import './templates/registration/registration.css';
-@import './templates/chats/chats.css'; */
+@import './pages/login/login.css';
+@import './pages/chat/chats.css';
+@import './pages/registration/registration.css';
 
 * {
   box-sizing: border-box;
@@ -8,4 +8,3 @@
   padding: 0;
   font-family: 'Inter',  sans-serif;
 }
-
