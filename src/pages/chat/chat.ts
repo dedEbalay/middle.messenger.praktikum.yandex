@@ -1,11 +1,4 @@
-// import tpl from './chat.hbs';
-// import './chats.css'
-
-// export default (props = {}) =>  {
-//     return tpl(props);
-// }
-
-const chatTpl = `
+const chatTpl: string = `
     <div class="chats">
         <div class="chats-field">
             <div class="chats-field-user">

@@ -1,12 +1,4 @@
-// import tpl from './login.hbs';
-// import './login.css';
-
-
-// export default (props = {}) =>  {
-    //     return tpl(props);
-    // }
-    
-const loginTpl = `
+const loginTpl: string = `
     <div class="login">
         <div class="login-modal">
             <div class="login-modal__title">{{ title }}</div>

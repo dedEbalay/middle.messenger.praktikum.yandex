@@ -1,11 +1,4 @@
-// import tpl from './registration.hbs';
-// import './registration.css'
-
-// export default (props = {}) =>  {
-//     return tpl(props);
-// }
-
-const registrationTpl = `
+const registrationTpl: string = `
     <div class="registration">
         <div class="registration-modal">
             <div class="registration-modal__title">{{ title }}</div>

@@ -1,47 +1,67 @@
 import Handlebars from "handlebars";
-import loginTpl from "./pages/login/login.js";
-import registrationTpl from "./pages/registration/registration.js";
-import chatTpl from "./pages/chat/chat.js"
+import loginTpl from "./pages/login/";
+import registrationTpl from "./pages/registration/";
+import chatTpl from "./pages/chat/"
 
-const root = document.querySelector('#root'),
-      loginData  = {
-        title: 'Welcome back, товарищ!',
-        mailPlaceholder: 'любительгулага@ссылка.рф',
-        passwordPlaceholder: '************',
-      },
-      login =  Handlebars.compile(loginTpl)(loginData),
-      chatData = {
-            userName: 'Любимый',
-            lastMessageDate: '4:20',
-            messageText: 'Все твои друзья уже присоединилсь к ГУЛАГ..',
-            fullMessageText: 'Все твои друзья уже присоединились к ГУЛАГу, чего же ты еще ждешь!?',
-      },
-      chat =  Handlebars.compile(chatTpl)(chatData),
-      registrationData = {
-            title: 'We are glad that you decided to join us, товарищ!',
-            nameTitle: 'First name of товарищ',
-            secondNameTitle: 'Second name of товарищ',
-            loginTitle: 'Login of товарищ',
-            mailTitle: 'Email of товарищ',
-            passwordTitle: 'Password of товарищ',
-            phoneTitle: 'Phone of товарищ'
-      },
-      registration =  Handlebars.compile(registrationTpl)(registrationData)
+type LoginType = {
+      title: string,
+      mailPlaceholder: string,
+      passwordPlaceholder: string
+}
+type ChatType = {
+      userName: string,
+      lastMessageDate: string,
+      messageText: string,
+      fullMessageText: string,
+}
+type RegistrationType = {
+      title: string,
+      nameTitle: string,
+      secondNameTitle: string,
+      loginTitle: string,
+      mailTitle: string,
+      passwordTitle: string,
+      phoneTitle: string
+}
+const loginData: LoginType = {
+      title: 'Welcome back, товарищ!',
+      mailPlaceholder: 'любительгулага@ссылка.рф',
+      passwordPlaceholder: '************'
+}
+const chatData: ChatType = {
+      userName: 'Любимый',
+      lastMessageDate: '4:20',
+      messageText: 'Все твои друзья уже присоединилсь к ГУЛАГ..',
+      fullMessageText: 'Все твои друзья уже присоединились к ГУЛАГу, чего же ты еще ждешь!?',
+}
+const registrationData: RegistrationType = {
+      title: 'We are glad that you decided to join us, товарищ!',
+      nameTitle: 'First name of товарищ',
+      secondNameTitle: 'Second name of товарищ',
+      loginTitle: 'Login of товарищ',
+      mailTitle: 'Email of товарищ',
+      passwordTitle: 'Password of товарищ',
+      phoneTitle: 'Phone of товарищ'
+} 
+
+const root: HTMLElement = document.querySelector('#root');
+
+const login: string =  Handlebars.compile(loginTpl)(loginData);
+
+const chat: string =  Handlebars.compile(chatTpl)(chatData);
+
+const registration: string =  Handlebars.compile(registrationTpl)(registrationData);
+
+
 
 root.innerHTML = login
 
-// root.innerHTML = loginTpl({
-//     title: 'Welcome back, товарищ!',
-//     mailPlaceholder: 'любительгулага@ссылка.рф',
-//     passwordPlaceholder: '************',
-// })
-
-const logBtn = document.querySelector('.login-modal__buttons-signup')
+const logBtn: HTMLElement = document.querySelector('.login-modal__buttons-signup')
 
 logBtn.addEventListener('click', () =>  {
     root.innerHTML = registration;
 
-    const regBtn = document.querySelector('.registration-modal__button')
+    const regBtn: HTMLElement = document.querySelector('.registration-modal__button')
 
     regBtn.addEventListener('click', () =>  {
         root.innerHTML = chat
