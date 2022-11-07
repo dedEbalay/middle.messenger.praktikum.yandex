@@ -1,4 +1,4 @@
-// import Handlebars from "handlebars";
+import Handlebars from "handlebars";
 import loginTpl from "./pages/login/login.js";
 import registrationTpl from "./pages/registration/registration.js";
 import chatTpl from "./pages/chat/chat.js"
