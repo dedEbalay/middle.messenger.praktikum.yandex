@@ -1,3 +1,4 @@
+/*eslint-env es6*/
 const express = require('express'),
       path = require('path'),
       PORT = process.env.PORT || 3000;
