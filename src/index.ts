@@ -1,8 +1,9 @@
-/*eslint-env es6*/
+// /*eslint-env es6*/
 import Handlebars from "handlebars";
 import loginTpl from "./pages/login/";
 import registrationTpl from "./pages/registration/";
-import chatTpl from "./pages/chat/"
+import chatTpl from "./pages/chat/";
+import Block from "./components/Block";
 
 type LoginType = {
       title: string,
@@ -53,13 +54,11 @@ const root: HTMLElement = document.querySelector('#root')!,
       chat: string =  Handlebars.compile(chatTpl)(chatData),
       registration: string =  Handlebars.compile(registrationTpl)(registrationData);
 
-
-
 root.innerHTML = login
 
 const logBtn: HTMLElement = document.querySelector('.login-modal__buttons-signup')!
 
-logBtn.addEventListener('click', () =>  {
+logBtn.addEventListener('click', () => {
     root.innerHTML = registration;
 
     const regBtn: HTMLElement = document.querySelector('.registration-modal__button')!
