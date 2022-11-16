@@ -1,4 +1,6 @@
-const registrationTpl: string = `
+import Block from "../../components/Block";
+
+export const registrationTpl: string = `
     <div class="registration">
         <div class="registration-modal">
             <div class="registration-modal__title">{{ title }}</div>
@@ -33,4 +35,21 @@ const registrationTpl: string = `
     </div>
 `
 
-export default registrationTpl;
+type RegistrationType = {
+    tpl: string,
+    data: {
+        title: string,
+        nameTitle: string,
+        secondNameTitle: string,
+        loginTitle: string,
+        mailTitle: string,
+        passwordTitle: string,
+        phoneTitle: string
+    }
+};
+
+export default class Registration extends Block {
+    constructor(props: RegistrationType) {
+        super('div', props)
+    }
+}

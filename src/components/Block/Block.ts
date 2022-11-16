@@ -12,11 +12,9 @@ class Block {
     _meta: any = null;          // заглушка any
     eventBus: EventBus;
     meta: any           //  заглушка any
-    props: {
-        text: string
-    };
+    props: any;
   
-    constructor(tagName: string = "div", props = {}) {
+    constructor(tagName: string = "div", props: any) {
         const eventBus = new EventBus();
         this._meta = {           
             tagName,
@@ -97,7 +95,8 @@ class Block {
     }
 
     // Может переопределять пользователь, необязательно трогать
-    render() {
+    render(): string {
+        return Handlebars.compile(this.props.tpl)(this.props.data)
     }
 
     getContent() {

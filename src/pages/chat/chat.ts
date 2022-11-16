@@ -1,4 +1,6 @@
-const chatTpl: string = `
+import Block from "../../components/Block";
+
+export const chatTpl: string = `
     <div class="chats">
         <div class="chats-field">
             <div class="chats-field-user">
@@ -16,8 +18,23 @@ const chatTpl: string = `
             <div class="chats-message-field__message">{{ fullMessageText }}</div>
         </div>
         <div class="chats-text-field">
-            <input type="text" placeholder="Отправить донос..." class="chats-text-field__input">
+            <input type="text" placeholder="Отправить донос..." class="chats-text-field__input message">
         </div>
     </div>
 `
-export default chatTpl;
+
+type ChatType = {
+    tpl: string,
+    data: {
+        userName: string,
+        lastMessageDate: string,
+        messageText: string,
+        fullMessageText: string,
+    }
+};
+
+export default class Chat extends Block {
+    constructor(props: ChatType) {
+        super('div', props)
+    }
+}

@@ -1,4 +1,6 @@
-const loginTpl: string = `
+import Block from "../../components/Block";
+
+export const loginTpl: string = `
     <div class="login">
         <div class="login-modal">
             <div class="login-modal__title">{{ title }}</div>
@@ -11,4 +13,17 @@ const loginTpl: string = `
         </div>
     </div>
 `
-export default loginTpl;
+type LoginType = {
+    tpl: string,
+    data: {
+        title: string,
+        mailPlaceholder: string,
+        passwordPlaceholder: string
+    }
+};
+
+export default class Login extends Block {
+    constructor(props: LoginType) {
+        super('div', props)
+    }
+}
