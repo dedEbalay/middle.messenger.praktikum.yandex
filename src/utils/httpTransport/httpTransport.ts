@@ -5,14 +5,14 @@ export const METHODS = {
     DELETE: 'DELETE',
   };
 
-  type Options = {
-    headers: string[],
+  type optionType = {
+    headers: object,
     method: string,
     data: any,
     timeout: number
   }
   
-  function queryStringify(data: object) {
+  function queryStringify(data: any) {
     if (typeof data !== 'object') {
       throw new Error('Data must be object');
     }
@@ -24,24 +24,24 @@ export const METHODS = {
   }
   
 export default class HTTPTransport {
-    get = (url: string, options: Options) => {
+    get = (url: string, options: optionType) => {
         return this.request(url, {...options, method: METHODS.GET}, options.timeout);
     };
 
-    post = (url: string, options: Options) => {
+    post = (url: string, options: optionType) => {
         return this.request(url, {...options, method: METHODS.POST}, options.timeout);
     };
 
-    put = (url: string, options: Options) => {
+    put = (url: string, options: optionType) => {
         return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
     };
 
-    delete = (url: string, options: Options) => { 
+    delete = (url: string, options: optionType) => { 
         return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
     };
 
-    request = (url: string, options: Options, timeout = 5000) => {
-        const {headers = {}, method, data} = options;
+    request = (url: string, options: optionType, timeout = 5000) => {
+        const {headers, method, data} = options;
 
         return new Promise(function(resolve, reject) {
             if (!method) {
@@ -59,8 +59,8 @@ export default class HTTPTransport {
                 : url,
             );
 
-            Object.keys(headers).forEach(key => {
-                xhr.setRequestHeader(key, headers[key]);
+            Object.keys(headers).forEach((key:any) => {
+                xhr.setRequestHeader(key, headers[key as keyof object]);
             });
 
             xhr.onload = function() {

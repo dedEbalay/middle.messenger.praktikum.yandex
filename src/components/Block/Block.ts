@@ -1,4 +1,5 @@
 import EventBus from "../EventBus";
+import Handlebars from "handlebars";
 
 class Block {
     static EVENTS = {
@@ -129,7 +130,7 @@ class Block {
         const newElement: HTMLElement = document.createElement(tagName),
               classes:string[] = this.props.data.classList,
               id: string = this.props.data.id,
-              placeholder: string = this.props.data.placeholder;
+              placehold: string = this.props.data.placeholder;
               
         if (classes) {
             if (classes.length != 0)
@@ -139,9 +140,6 @@ class Block {
         }
         if (id) {
             newElement.id = id
-        }
-        if (placeholder) {
-            newElement.placeholder = placeholder
         }
         return newElement
     }

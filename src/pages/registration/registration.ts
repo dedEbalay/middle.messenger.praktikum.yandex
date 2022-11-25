@@ -21,9 +21,7 @@ export const registrationTpl: string = `
         <div id="phone_div" class="registration-modal-input">
             <div class="registration-modal-input__title">{{ phoneTitle }}</div>
         </div>
-        <div class="registration-modal__button">
-            Create user
-        </div>
+        <div id="registration_button" class="registration-button__wrapper"></div>
     </div>
 `
 
