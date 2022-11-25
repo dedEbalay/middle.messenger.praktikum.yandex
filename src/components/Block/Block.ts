@@ -87,11 +87,13 @@ class Block {
 
     _render() {
         const block = this.render();
+        
         // Этот небезопасный метод для упрощения логики
         // Используйте шаблонизатор из npm или напишите свой безопасный
         // Нужно не в строку компилировать (или делать это правильно),
         // либо сразу в DOM-элементы возвращать из compile DOM-ноду
         this._element.innerHTML = block;
+        // this._createDocumentElement()
     }
 
     // Может переопределять пользователь, необязательно трогать
@@ -106,8 +108,8 @@ class Block {
     _makePropsProxy(props: any) {           //  заглушка any
         const self = this
 
-        // lolkek техническая переменная
-        const lolkek = new Proxy(props, {
+        // lolkekcheburek техническая переменная
+        const lolkekcheburek = new Proxy(props, {
             deleteProperty(target, props) {
                 throw new Error('нет доступа')
             },
@@ -119,12 +121,29 @@ class Block {
             }
         })
 
-        return lolkek;
+        return lolkekcheburek;
     }
 
     _createDocumentElement(tagName:string) {
         // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-        return document.createElement(tagName);
+        const newElement: HTMLElement = document.createElement(tagName),
+              classes:string[] = this.props.data.classList,
+              id: string = this.props.data.id,
+              placeholder: string = this.props.data.placeholder;
+              
+        if (classes) {
+            if (classes.length != 0)
+                classes.forEach((item: string) => {
+                    newElement.classList.add(item)
+                })
+        }
+        if (id) {
+            newElement.id = id
+        }
+        if (placeholder) {
+            newElement.placeholder = placeholder
+        }
+        return newElement
     }
 
     show() {

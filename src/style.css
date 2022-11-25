@@ -8,3 +8,9 @@
   padding: 0;
   font-family: 'Inter',  sans-serif;
 }
+
+.input_error {
+  color: red;
+  border-color: red;
+  background-color: rgb(236, 156, 156);
+}
