@@ -1,16 +1,16 @@
-@import './pages/login/login.css';
-@import './pages/chat/chats.css';
-@import './pages/registration/registration.css';
+@import url("./pages/login/login.css");
+@import url("./pages/chat/chats.css");
+@import url("./pages/registration/registration.css");
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Inter',  sans-serif;
+  font-family: Inter, sans-serif;
 }
 
-.input_error {
+.error {
   color: red;
   border-color: red;
-  background-color: rgb(236, 156, 156);
+  background-color: rgb(236 156 156);
 }

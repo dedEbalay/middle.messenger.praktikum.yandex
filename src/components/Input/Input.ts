@@ -63,7 +63,7 @@ export default class Input extends Block {
         });
         this.getContent().addEventListener('blur', (e:any) => {         //  добавление валидации на 'blur'
             let refValue: string =  this.getValue()
-            const errorClass: string = 'input_error'
+            const errorClass: string = 'error'
             const checkClass: boolean = this.element.classList.contains(errorClass)
             const checkErrorAndAddErrorClass = (): void => {
                 if (!checkClass)  {
