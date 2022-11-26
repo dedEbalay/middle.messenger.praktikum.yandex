@@ -7,7 +7,8 @@
     justify-content: center
     @include primaryBG
     &-modal
-        height: 512px
+        // height: 512px
+        height: max-content
         width: 845px
         @include lightBG
         padding: 49px 90px
@@ -27,7 +28,14 @@
             font-size: 32px
             line-height: 39px
             padding: 14px 21px
-            margin-bottom: 11px
+            // margin-bottom: 11px
+        &-input
+            &__wrapper
+                min-height: 145px
+                display: flex
+                flex-direction: column
+                justify-content: space-between
+                margin-bottom: 11px
         &__buttons  
             display: flex
             justify-content: space-between

@@ -36,8 +36,7 @@ export default class Button extends Block {
     }
 
     _render(): void {
-        this._addEvent()
-        const block = this.render()
+        // this._addEvent()
     }
 
     render(): string {

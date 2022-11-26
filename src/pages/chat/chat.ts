@@ -16,8 +16,7 @@ export const chatTpl: string = `
     <div class="chats-message-field">
         {{{ ChatMessage }}}
     </div>
-    <div id="message_div" class="chats-text-field">
-    </div>
+    <div id="message_div" class="chats-text-field"></div>
 `
 
 type ChatType = {

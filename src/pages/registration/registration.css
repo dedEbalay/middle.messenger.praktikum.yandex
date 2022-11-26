@@ -22,7 +22,9 @@
 }
 
 .registration-modal-input {
+  height: max-content;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   font-size: 32px;
   line-height: 39px;
@@ -32,6 +34,7 @@
 .registration-modal-input__input {
   width: 500px;
   height: 57px;
+  margin-bottom: 2px;
   border: 1px solid #303635;
   border-radius: 6px;
   background-color: #edf6f5;

@@ -40,6 +40,7 @@ export default class Input extends Block {
         })
         newElement.id = id
         newElement.placeholder = placehold
+        newElement.name = id
         return newElement
     }
 
@@ -63,15 +64,49 @@ export default class Input extends Block {
         });
         this.getContent().addEventListener('blur', (e:any) => {         //  добавление валидации на 'blur'
             let refValue: string =  this.getValue()
-            const errorClass: string = 'error'
+            const errorClass: string = 'error',
+                  errorClassOnTop: string = 'error_top'
             const checkClass: boolean = this.element.classList.contains(errorClass)
-            const checkErrorAndAddErrorClass = (): void => {
-                if (!checkClass)  {
-                    this.setErrorStatus(true)
+            const checkErrorAndAddErrorClass = (errorMessage:string): void => {
+                if (document.querySelector(`#${this.props.data.id}`)?.nextElementSibling) {
+                    if (document.querySelector(`#${this.props.data.id}`)?.nextElementSibling?.classList.contains('error_message')) {
+                        document.querySelector(`#${this.props.data.id}`)?.nextElementSibling?.remove()
+                    }
+                }
+                
+                this.setErrorStatus(true)
+                const errorElement = document.createElement('div')
+                errorElement.innerText = errorMessage
+                errorElement.classList.add('error_message')
+                if (this.props.data.id === 'message') {
+                    if (document.querySelector(`#${this.props.data.id}`)?.previousElementSibling) {
+                        if (document.querySelector(`#${this.props.data.id}`)?.previousElementSibling?.classList.contains('error_message')) {
+                            document.querySelector(`#${this.props.data.id}`)?.previousElementSibling?.remove()
+                        }
+                    }
+                    errorElement.classList.add(errorClassOnTop)
+                    this.element.before(errorElement)
+                } else {
+                    this.element.after(errorElement)
+                }
+                if (!checkClass) {
                     this.element.classList.add(errorClass)
                 }
             }
             const checkErrorAndRemoveErrorClass = ():void => {
+                if (this.props.data.id === 'message') {
+                    if (document.querySelector(`#${this.props.data.id}`)?.previousElementSibling) {
+                        if (document.querySelector(`#${this.props.data.id}`)?.previousElementSibling?.classList.contains('error_message')) {
+                            document.querySelector(`#${this.props.data.id}`)?.previousElementSibling?.remove()
+                        }
+                    }
+                } else {
+                    if (document.querySelector(`#${this.props.data.id}`)?.nextElementSibling) {
+                        if (document.querySelector(`#${this.props.data.id}`)?.nextElementSibling?.classList.contains('error_message')) {
+                            document.querySelector(`#${this.props.data.id}`)?.nextElementSibling?.remove()
+                        }
+                    }
+                }
                 if (checkClass) {
                     this.setErrorStatus(false)
                     this.element.classList.remove(errorClass)
@@ -84,8 +119,11 @@ export default class Input extends Block {
                     function startsWithCapital(str: string){            //  функция проверки на заглавную букву в начале строки. При начале на букву в нижнем регистре, возвращает false
                         return str.charAt(0) === str.charAt(0).toUpperCase()
                     }
-                    if (refValue.length > 0 || !startsWithCapital(this.getValue())) {
-                        checkErrorAndAddErrorClass()
+                    if (refValue.length > 0) {
+                        checkErrorAndAddErrorClass('Обнаружены недопустимые символы')
+                        break
+                    } else if (!startsWithCapital(this.getValue())) {
+                        checkErrorAndAddErrorClass('Имя должно начинаться с заглавной буквы')
                         break
                     } else {
                         checkErrorAndRemoveErrorClass()
@@ -93,17 +131,17 @@ export default class Input extends Block {
                     }
                 case 'login':
                     refValue = refValue.replace(/[\d]/gi, '')
-                    if (refValue.length == 0) {
-                        checkErrorAndAddErrorClass()
+                    if (refValue.length == 0 && this.getValue().length != 0) {
+                        checkErrorAndAddErrorClass('Логин не может состоять из одних цифр')
                         break
                     } else {
                         refValue = this.getValue()
                         refValue = refValue.replace(/[a-z\-\d\_]/gi, '')            //  regex проверки 'login'
                         if (this.getValue().length < 3 || this.getValue().length > 20) {
-                            checkErrorAndAddErrorClass()
+                            checkErrorAndAddErrorClass('Длина логина не может быть короче 3 или длинее 20 символов')
                             break
                         } else if (refValue.length > 0) {
-                            checkErrorAndAddErrorClass()
+                            checkErrorAndAddErrorClass('Обнаружены недопустимые символы')
                             break
                         } else {
                             checkErrorAndRemoveErrorClass()
@@ -113,13 +151,13 @@ export default class Input extends Block {
                 case 'email':
                     refValue = refValue.replace(/[a-z\d\-\_\@\.]/gi, '')
                     if (refValue.length > 0) {
-                        checkErrorAndAddErrorClass()
+                        checkErrorAndAddErrorClass('Обнаружены недопустимые символы')
                         break
                     } else {
                         refValue = this.getValue()
                         refValue = refValue.replace(/[^@\.]/gi, '')
                         if (!refValue.includes('@.')) {
-                            checkErrorAndAddErrorClass()
+                            checkErrorAndAddErrorClass('Почта должна содержать @ и .')
                             break
                         } else {
                             checkErrorAndRemoveErrorClass()
@@ -138,18 +176,24 @@ export default class Input extends Block {
                         return false
                     }
                     const additiveValue = refValue.replace(/[^\d]/gi, '')
-                    if (refValue.length > 8 && refValue.length < 40 && additiveValue.length > 0 && checkCapitalLetter(refValue)) {
-                        checkErrorAndRemoveErrorClass()
+                    if (refValue.length < 8 || refValue.length > 40) {
+                        checkErrorAndAddErrorClass('Пароль не может быть короче 8 или длинее 40 символов')
+                        break
+                    } else if (additiveValue.length == 0 || !checkCapitalLetter(refValue)) {
+                        checkErrorAndAddErrorClass('Пароль должен содержать, по меньшей мере, 1 цифру и заглавную букву')
                         break
                     } else {
-                        checkErrorAndAddErrorClass()
+                        checkErrorAndRemoveErrorClass()
                         break
                     }
                 case 'phone':
                     const additiveValue2 = refValue.replace(/[^+]/gi, '')
                     refValue = refValue.replace(/[\d\+]/gi, '')
-                    if ((refValue.length > 0 || additiveValue2.length > 1) || (additiveValue2.length == 1  && !this.getValue().startsWith('+'))) {
-                        checkErrorAndAddErrorClass()
+                    if (refValue.length > 0 || additiveValue2.length > 1) {
+                        checkErrorAndAddErrorClass('Телефон должен состоять только из цифр(может содержать "+" в начале)')
+                        break
+                    } else if (additiveValue2.length == 1  && !this.getValue().startsWith('+')) {
+                        checkErrorAndAddErrorClass('"+" должен стоять в начале номера телефона')
                         break
                     } else {
                         checkErrorAndRemoveErrorClass()
@@ -157,7 +201,7 @@ export default class Input extends Block {
                     }
                 case 'message':
                     if (this.getValue().length < 1) {
-                        checkErrorAndAddErrorClass()
+                        checkErrorAndAddErrorClass('Сообщение не может быть пустым')
                         break
                     } else {
                         checkErrorAndRemoveErrorClass()

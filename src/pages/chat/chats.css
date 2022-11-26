@@ -1,7 +1,7 @@
 .chats {
   height: 100vh;
   display: grid;
-  grid-template: 1fr 54px/457px 1fr;
+  grid-template: 1fr 65px/457px 1fr;
 }
 
 .chats-avatar {
@@ -70,6 +70,7 @@
   line-height: 19px;
   align-self: center;
   width: max-content;
+  width: max-content;
   margin: auto;
 }
 
@@ -89,7 +90,13 @@
 }
 
 .chats-text-field {
+  position: relative;
   width: 100%;
+  height: 100%;
+  align-self: end;
+}
+
+.chats-text-field__form {
   height: 100%;
 }
 

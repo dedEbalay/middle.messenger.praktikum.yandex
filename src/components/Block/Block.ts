@@ -89,10 +89,6 @@ class Block {
     _render() {
         const block = this.render();
         
-        // Этот небезопасный метод для упрощения логики
-        // Используйте шаблонизатор из npm или напишите свой безопасный
-        // Нужно не в строку компилировать (или делать это правильно),
-        // либо сразу в DOM-элементы возвращать из compile DOM-ноду
         this._element.innerHTML = block;
         // this._createDocumentElement()
     }
@@ -129,8 +125,7 @@ class Block {
         // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
         const newElement: HTMLElement = document.createElement(tagName),
               classes:string[] = this.props.data.classList,
-              id: string = this.props.data.id,
-              placehold: string = this.props.data.placeholder;
+              id: string = this.props.data.id;
               
         if (classes) {
             if (classes.length != 0)
@@ -142,14 +137,6 @@ class Block {
             newElement.id = id
         }
         return newElement
-    }
-
-    show() {
-        this._element.style.display = 'block'
-    }
-
-    hide() {
-        this._element.style.display = 'none'
     }
 }
 
