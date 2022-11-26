@@ -73,14 +73,13 @@ export default class Input extends Block {
                         document.querySelector(`#${this.props.data.id}`)?.nextElementSibling?.remove()
                     }
                 }
-                
                 this.setErrorStatus(true)
                 const errorElement = document.createElement('div')
                 errorElement.innerText = errorMessage
-                errorElement.classList.add('error_message')
+                errorElement.classList.add('error__message')
                 if (this.props.data.id === 'message') {
                     if (document.querySelector(`#${this.props.data.id}`)?.previousElementSibling) {
-                        if (document.querySelector(`#${this.props.data.id}`)?.previousElementSibling?.classList.contains('error_message')) {
+                        if (document.querySelector(`#${this.props.data.id}`)?.previousElementSibling?.classList.contains('error__message')) {
                             document.querySelector(`#${this.props.data.id}`)?.previousElementSibling?.remove()
                         }
                     }
