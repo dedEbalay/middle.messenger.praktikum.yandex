@@ -1,0 +1,44 @@
+.error-page {
+  background-color: #641010;
+  color: #d9d9d9;
+  height: 100vh;
+  padding: 137px 134px 85px;
+}
+
+.error-page-container {
+  display: flex;
+  width: max-content;
+  margin: auto;
+}
+
+.error-page__img {
+  margin-right: 40px;
+  background-repeat: no-repeat;
+  align-self: center;
+}
+
+.error-page-description {
+  align-self: center;
+  max-width: 525px;
+  text-align: center;
+}
+
+.error-page-description__title {
+  font-size: 64px;
+}
+
+.error-page-description__text {
+  font-size: 48px;
+}
+
+.error404 {
+  width: 643px;
+  height: 598px;
+  background-image: url("./src/beriya.png");
+}
+
+.error500 {
+  width: 738px;
+  height: 583px;
+  background-image: url("./src/lenin.png");
+}
