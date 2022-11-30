@@ -1,0 +1,81 @@
+@import '../../mixins'
+
+.chats
+    height: 100vh
+    display: grid
+    grid-template: 1fr 65px / 457px 1fr
+    &-avatar
+        border-radius: 50%
+        background-size: cover
+    &-field
+        @include lightBG
+        @include primaryBR
+        width: 457px
+        height: 100%
+        display: flex
+        flex-direction: column
+        grid-row: 1/3
+        &-user
+            display: flex
+            justify-content: space-between
+            padding: 5px 5px 10px
+            &__avatar
+                background-image: url('./src/solzh.jpg')
+                width: 77px
+                height: 77px
+            &__settings
+                background-image: url('./src/gear.svg')
+                height: 72px
+                width: 72px
+        &-item
+            @include darkColor
+            width: 100%
+            padding: 5px 0 5px 7px
+            display: grid
+            grid-template: 30px 30px / 68px 312px 58px
+            &__avatar
+                background-image: url('./src/stalin.jpg')
+                width: 60px
+                height: 60px
+                grid-row: 1/3
+            &__text
+                grid-column: 2/4
+                font-size: 16px
+                line-height: 19px
+                align-self: center
+            &__title
+                font-size: 20px
+                line-height: 24px
+                align-self: center
+            &__date
+                font-size: 16px
+                line-height: 19px
+                align-self: center
+                width: max-content
+                margin: auto
+    &-message
+        &-field
+            @include primaryBG
+            width: 100%
+            display: flex
+            flex-direction: column-reverse
+            padding: 26px 20px
+            &__message
+                @include lightBG
+                border-radius: 9px
+                padding: 7px 8px
+                width: 45%
+    &-text
+        &-field
+            position: relative
+            width: 100%
+            height: 100%
+            align-self: end
+            &__form
+                height: 100%
+            &__input
+                @include lightBG
+                width: 100%
+                height: 100%
+                border: none
+                padding: 11px 37px
