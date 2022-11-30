@@ -17,7 +17,7 @@ export default class Block<T extends Record<string, any>> {
 		element: HTMLElement;
 		callback: EventListenerOrEventListenerObject;
 	}[];
-	props;
+	props: T;
 
 	constructor(tagName: string, props: T) {
 		const eventBus = new EventBus();
@@ -106,7 +106,7 @@ export default class Block<T extends Record<string, any>> {
 		this.eventBus.emit(Block.EVENTS.FLOW_CDM);
 	}
 
-	private _render(): void {
+	_render(): void {
 		const block = this.render();
 		this._removeEvents();
 		this._element.innerHTML = block;

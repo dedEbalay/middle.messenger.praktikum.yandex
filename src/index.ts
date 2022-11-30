@@ -1,18 +1,23 @@
-import { loginTpl } from "./pages/login/login";
-import { registrationTpl } from "./pages/registration/registration";
-import { chatTpl } from "./pages/chat/chat";
 import render from "./utils/renderDOM";
+import { loginTpl } from "./pages/Login/";
+import Login from "./pages/Login";
+import { registrationTpl } from "./pages/Registration/registration";
+import Registration from "./pages/Registration";
+import { chatTpl } from "./pages/Chat/";
+import Chat from "./pages/Chat";
 import { messageTpl } from "./components/ChatMessage/ChatMessage";
-import Registration from "./pages/registration/registration";
-import Login from "./pages/login/login";
-import Chat from "./pages/chat/chat";
 import ChatMessage from "./components/ChatMessage";
 import Input from "./components/Input";
 import Button from "./components/Button";
-import errorPage from "./pages/errorPage";
-import { errorTpl } from "./pages/errorPage/errorPage";
+import ErrorPage from "./pages/ErrorPage";
+import { errorTpl } from "./pages/ErrorPage/";
 import Form from "./components/Form";
-import { blurValidation, setValue } from "./utils/eventListeners";
+import {
+	blurValidation,
+	closeModal,
+	submitValidation,
+} from "./utils/eventListeners";
+import Profile, { profileFormTpl, profileTpl } from "./pages/Profile";
 
 const login = new Form({
 		tpl: loginTpl,
@@ -20,6 +25,11 @@ const login = new Form({
 			classList: ["login"],
 			title: "Welcome back, товарищ!",
 		},
+		events: [
+			{
+				submit: submitValidation,
+			},
+		],
 	}),
 	loginInput = new Input({
 		data: {
@@ -54,7 +64,6 @@ const login = new Form({
 	});
 
 const root: HTMLElement = document.querySelector("#root")!;
-// render('#root', error)
 
 const toRegistration = document.createElement("li"),
 	toChats = document.createElement("li"),
@@ -140,6 +149,7 @@ toRegistration.addEventListener("click", () => {
 				classList: ["registration"],
 				title: "We are glad that you decided to join us, товарищ!",
 			},
+			events: [{ submit: submitValidation }],
 		}),
 		registrationbutton = new Button({
 			data: {
@@ -217,9 +227,6 @@ toChats.addEventListener("click", () => {
 				{
 					blur: blurValidation,
 				},
-				{
-					change: setValue,
-				},
 			],
 		}),
 		messageForm = new Form({
@@ -228,14 +235,152 @@ toChats.addEventListener("click", () => {
 				classList: ["chats-text-field__form"],
 				title: null,
 			},
+			events: [
+				{
+					submit: submitValidation,
+				},
+			],
 		});
 	root.innerHTML = "";
 	render("#root", chat);
 	render("#message_div", messageForm);
 	render(".chats-text-field__form", messageInput);
+	const toProfile = document.querySelector(".chats-field-user__settings");
+	toProfile?.addEventListener("click", () => {
+		const profile = new Profile({
+				tpl: profileTpl,
+				data: {
+					imgLink: "123",
+					classList: ["profile"],
+				},
+				events: [
+					{
+						click: closeModal,
+					},
+				],
+			}),
+			profileForm = new Form({
+				tpl: profileFormTpl,
+				data: {
+					classList: ["profile-info-block"],
+					title: null,
+				},
+				events: [
+					{
+						submit: submitValidation,
+					},
+				],
+			}),
+			profileFirstNameInput = new Input({
+				data: {
+					id: "first_name",
+					classList: ["profile-info-block-item__input"],
+					placeholder: "Александр",
+				},
+				events: [
+					{
+						blur: blurValidation,
+					},
+				],
+			}),
+			profileSecondNameInput = new Input({
+				data: {
+					id: "second_name",
+					classList: ["profile-info-block-item__input"],
+					placeholder: "Солженицын",
+				},
+				events: [
+					{
+						blur: blurValidation,
+					},
+				],
+			}),
+			profileDisplayedNameInput = new Input({
+				data: {
+					id: "displayed_name",
+					classList: ["profile-info-block-item__input"],
+					placeholder: "uZniKGuLAgA",
+				},
+				events: [
+					{
+						blur: blurValidation,
+					},
+				],
+			}),
+			profileLoginInput = new Input({
+				data: {
+					id: "login",
+					classList: ["profile-info-block-item__input"],
+					placeholder: "uZniKGuLAgA",
+				},
+				events: [
+					{
+						blur: blurValidation,
+					},
+				],
+			}),
+			profileEmailInput = new Input({
+				data: {
+					id: "email",
+					classList: ["profile-info-block-item__input"],
+					placeholder: "gulag_enjoyer@gulagu.da",
+				},
+				events: [
+					{
+						blur: blurValidation,
+					},
+				],
+			}),
+			profilePhoneInput = new Input({
+				data: {
+					id: "phone",
+					classList: ["profile-info-block-item__input"],
+					placeholder: "+78005553535",
+				},
+				events: [
+					{
+						blur: blurValidation,
+					},
+				],
+			}),
+			profileOldPasswordInput = new Input({
+				data: {
+					id: "password",
+					classList: ["profile-info-block-item__input"],
+					placeholder: "*********",
+				},
+				events: [
+					{
+						blur: blurValidation,
+					},
+				],
+			}),
+			profileNewPasswordInput = new Input({
+				data: {
+					id: "new_password",
+					classList: ["profile-info-block-item__input"],
+					placeholder: "*********",
+				},
+				events: [
+					{
+						blur: blurValidation,
+					},
+				],
+			});
+		render("#root", profile);
+		render(".profile-container", profileForm);
+		render("#profile_first_name_div", profileFirstNameInput);
+		render("#profile_second_name_div", profileSecondNameInput);
+		render("#profile_displayed_name_div", profileDisplayedNameInput);
+		render("#profile_login_div", profileLoginInput);
+		render("#profile_email_div", profileEmailInput);
+		render("#profile_phone_div", profilePhoneInput);
+		render("#profile_old_password_div", profileOldPasswordInput);
+		render("#profile_new_password_div", profileNewPasswordInput);
+	});
 });
 toError404.addEventListener("click", () => {
-	const error404 = new errorPage({
+	const error404 = new ErrorPage({
 		tpl: errorTpl,
 		data: {
 			errorCode: 404,
@@ -248,7 +393,7 @@ toError404.addEventListener("click", () => {
 	render("#root", error404);
 });
 toError500.addEventListener("click", () => {
-	const error500 = new errorPage({
+	const error500 = new ErrorPage({
 		tpl: errorTpl,
 		data: {
 			errorCode: 500,

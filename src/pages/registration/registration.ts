@@ -23,24 +23,24 @@ export const registrationTpl: string = `
         </div>
         <div id="registration_button" class="registration-button__wrapper"></div>
     </div>
-`
+`;
 
 type RegistrationType = {
-    tpl: string,
-    data: {
-        classList: string[],
-        title: string,
-        nameTitle: string,
-        secondNameTitle: string,
-        loginTitle: string,
-        mailTitle: string,
-        passwordTitle: string,
-        phoneTitle: string
-    }
+	tpl: string;
+	data: {
+		classList: string[];
+		title: string;
+		nameTitle: string;
+		secondNameTitle: string;
+		loginTitle: string;
+		mailTitle: string;
+		passwordTitle: string;
+		phoneTitle: string;
+	};
 };
 
-export default class Registration extends Block {
-    constructor(props: RegistrationType) {
-        super('div', props)
-    }
+export default class Registration extends Block<RegistrationType> {
+	constructor(props: RegistrationType) {
+		super("div", props);
+	}
 }

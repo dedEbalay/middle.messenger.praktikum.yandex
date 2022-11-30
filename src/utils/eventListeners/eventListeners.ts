@@ -67,7 +67,7 @@ export function blurValidation(e: Event): void {
 					if (
 						document
 							.querySelector(`#${element.id}`)
-							?.nextElementSibling?.classList.contains("error_message")
+							?.nextElementSibling?.classList.contains("error__message")
 					) {
 						document
 							.querySelector(`#${element.id}`)
@@ -139,6 +139,7 @@ export function blurValidation(e: Event): void {
 					}
 				}
 			case "password":
+			case "new_password":
 				function checkCapitalLetter(str: string): boolean {
 					const stringWithoutDigitals = str.replace(/[^a-z]/gi, "");
 					for (let char of stringWithoutDigitals) {
@@ -195,6 +196,38 @@ export function blurValidation(e: Event): void {
 					checkErrorAndRemoveErrorClass();
 					break;
 				}
+		}
+	}
+}
+
+export function submitValidation(e: Event) {
+	e.preventDefault();
+	let errors = 0;
+	const inputs = document.querySelectorAll("input"),
+		arrayFromInputs: any[] = Array.from(inputs);
+	arrayFromInputs.forEach((item: HTMLInputElement) => {
+		const event = new Event("blur");
+		item.dispatchEvent(event);
+	});
+	arrayFromInputs.forEach((item: HTMLInputElement) => {
+		if (item.classList.contains("error")) {
+			errors++;
+		}
+	});
+	if (errors > 0) {
+		console.log("Ошибки в инпутах");
+	} else {
+		arrayFromInputs.forEach((item: HTMLInputElement) => {
+			console.log(item.value);
+		});
+	}
+}
+
+export function closeModal(e: Event) {
+	const target: EventTarget = e.target!;
+	if (target instanceof HTMLElement) {
+		if (target.classList.contains("profile-info-block__button")) {
+			document.querySelector(".profile")?.remove();
 		}
 	}
 }

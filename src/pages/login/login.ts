@@ -8,17 +8,17 @@ export const loginTpl: string = `
             <button class="login-modal__buttons-signin login-modal__button">Sign In</button>
         </div>
     </div>
-`
+`;
 type LoginType = {
-    tpl: string,
-    data: {
-        classList: string[],
-        title: string
-    }
+	tpl: string;
+	data: {
+		classList: string[];
+		title: string;
+	};
 };
 
-export default class Login extends Block {
-    constructor(props: LoginType) {
-        super('div', props)
-    }
+export default class Login extends Block<LoginType> {
+	constructor(props: LoginType) {
+		super("div", props);
+	}
 }

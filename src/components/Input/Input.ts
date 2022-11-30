@@ -26,8 +26,11 @@ export default class Input extends Block<InputType> {
 		});
 		newElement.id = id;
 		newElement.placeholder = placehold;
-		newElement.name = id;
-
+		if (id == "new_password") {
+			newElement.name = "password";
+		} else {
+			newElement.name = id;
+		}
 		return newElement;
 	}
 

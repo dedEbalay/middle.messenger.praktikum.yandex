@@ -1,12 +1,14 @@
 .error-page {
   background-color: #641010;
-  color: #bdbcbc;
+  color: #d9d9d9;
   height: 100vh;
   padding: 137px 134px 85px;
 }
 
 .error-page-container {
   display: flex;
+  width: max-content;
+  width: max-content;
   width: max-content;
   margin: auto;
 }

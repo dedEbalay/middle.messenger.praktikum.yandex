@@ -10,13 +10,13 @@
 }
 
 .chats-field {
+  background-color: #d9d9d9;
+  border: 1px solid #303635;
   width: 457px;
   height: 100%;
-  background-color: #d9d9d9;
   display: flex;
   flex-direction: column;
   grid-row: 1/3;
-  border: 1px solid #303635;
 }
 
 .chats-field-user {
@@ -70,6 +70,8 @@
   line-height: 19px;
   align-self: center;
   width: max-content;
+  width: max-content;
+  width: max-content;
   margin: auto;
 }
 
@@ -100,9 +102,9 @@
 }
 
 .chats-text-field__input {
+  background-color: #d9d9d9;
   width: 100%;
   height: 100%;
-  background: #d2cece;
   border: none;
   padding: 11px 37px;
 }

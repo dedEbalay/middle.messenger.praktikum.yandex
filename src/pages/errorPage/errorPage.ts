@@ -8,26 +8,35 @@ export const errorTpl: string = `
             <div class="error-page-description__text">{{ errorMessage }}</div>
         </div>
     </div>
-`
+`;
 
-export default class errorPage extends Block {
+type ErrorType = {
+	tpl: string;
+	data: {
+		errorCode: number;
+		errorMessage: string;
+		classList: string[];
+	};
+};
 
-    constructor(props: any) {
-        super('div', props)
-    }
-    
-    _render(): void {
-        const block = this.render()
-        this._element.innerHTML = block
-        const errorElement: HTMLElement = this._element.children.item(0).children.item(0)
-        switch (this.props.data.errorCode) {
-            case 404:
-                errorElement.classList.add('error404')
-                break
-            case 500:
-                errorElement.classList.add('error500')
-                break
-            }
-                
-    }
+export default class ErrorPage extends Block<ErrorType> {
+	constructor(props: ErrorType) {
+		super("div", props);
+	}
+
+	_render(): void {
+		const block = this.render();
+		this._element.innerHTML = block;
+		setTimeout(() => {
+			const errorElement = document.querySelector(".error-page__img")!;
+			switch (this.props.data.errorCode) {
+				case 404:
+					errorElement.classList.add("error404");
+					break;
+				case 500:
+					errorElement.classList.add("error500");
+					break;
+			}
+		}, 0);
+	}
 }

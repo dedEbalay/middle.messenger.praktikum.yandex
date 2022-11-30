@@ -1,3 +1,5 @@
-import registrationTmpl from "./registration";
+import { registrationTpl } from "./registration";
+import Registration from "./registration";
 
-export default registrationTmpl;
+export { registrationTpl };
+export default Registration;

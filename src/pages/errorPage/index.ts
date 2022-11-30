@@ -1,3 +1,5 @@
-import errorPage from "./errorPage";
+import ErrorPage from "./ErrorPage";
+import { errorTpl } from "./ErrorPage";
 
-export default  errorPage;
+export { errorTpl };
+export default ErrorPage;

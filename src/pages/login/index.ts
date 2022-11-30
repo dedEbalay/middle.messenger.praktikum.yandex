@@ -1,3 +1,5 @@
-import loginTmpl from "./login";
+import { loginTpl } from "./Login";
+import Login from "./Login";
 
-export default loginTmpl;
+export { loginTpl };
+export default Login;

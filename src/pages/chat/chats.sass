@@ -1,5 +1,5 @@
 @import '../../mixins'
-    
+
 .chats
     height: 100vh
     display: grid
@@ -8,13 +8,13 @@
         border-radius: 50%
         background-size: cover
     &-field
+        @include lightBG
+        @include primaryBR
         width: 457px
         height: 100%
-        @include lightBG
         display: flex
         flex-direction: column
         grid-row: 1/3
-        @include primaryBR
         &-user
             display: flex
             justify-content: space-between
@@ -28,7 +28,7 @@
                 height: 72px
                 width: 72px
         &-item
-            color: #454444
+            @include darkColor
             width: 100%
             padding: 5px 0 5px 7px
             display: grid
@@ -74,9 +74,8 @@
             &__form
                 height: 100%
             &__input
+                @include lightBG
                 width: 100%
                 height: 100%
-                background: #D2CECE
                 border: none
                 padding: 11px 37px
-                

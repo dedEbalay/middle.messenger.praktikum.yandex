@@ -4,15 +4,15 @@ export const messageTpl = `
     <div class="chats-message-field__message">{{ fullMessageText }}</div>
 `;
 
-type messageType = {
+type MessageType = {
 	tpl: string;
 	data: {
 		fullMessageText: string;
 	};
 };
 
-export default class ChatMessage extends Block<messageType> {
-	constructor(props: messageType) {
+export default class ChatMessage extends Block<MessageType> {
+	constructor(props: MessageType) {
 		super("div", props);
 	}
 }

@@ -1,3 +1,3 @@
-import { blurValidation, setValue } from "./eventListeners";
+import { blurValidation, submitValidation, closeModal } from "./eventListeners";
 
-export { blurValidation, setValue };
+export { blurValidation, submitValidation, closeModal };
