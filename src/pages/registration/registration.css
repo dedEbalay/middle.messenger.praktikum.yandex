@@ -9,8 +9,6 @@
 .registration-modal {
   background-color: #d9d9d9;
   height: max-content;
-  height: max-content;
-  height: max-content;
   width: 1052px;
   border-radius: 10px;
   padding: 25px 52px 44px 59px;
@@ -24,8 +22,6 @@
 }
 
 .registration-modal-input {
-  height: max-content;
-  height: max-content;
   height: max-content;
   display: flex;
   flex-wrap: wrap;
