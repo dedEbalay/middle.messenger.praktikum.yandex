@@ -1,143 +1,164 @@
 import EventBus from "../EventBus";
 import Handlebars from "handlebars";
 
-class Block {
-    static EVENTS = {
-        INIT: "init",
-        FLOW_CDM: "flow:component-did-mount",
-        FLOW_RENDER: "flow:render",
-        FLOW_CDU: "flow:component-did-update"
-    };
-  
-    _element: any = null;           // заглушка any
-    _meta: any = null;          // заглушка any
-    eventBus: EventBus;
-    meta: any           //  заглушка any
-    props: any;
-  
-    constructor(tagName: string = "div", props: any) {
-        const eventBus = new EventBus();
-        this._meta = {           
-            tagName,
-            props
-        };
+export default class Block<T extends Record<string, any>> {
+	static EVENTS = {
+		INIT: "init",
+		FLOW_CDM: "flow:component-did-mount",
+		FLOW_RENDER: "flow:render",
+		FLOW_CDU: "flow:component-did-update",
+	};
 
-        this.eventBus = eventBus
+	eventBus: EventBus;
+	tagName: string;
+	_element: HTMLElement;
+	listeners: {
+		eventName: string;
+		element: HTMLElement;
+		callback: EventListenerOrEventListenerObject;
+	}[];
+	props;
 
-        this.props = this._makePropsProxy(props);
+	constructor(tagName: string, props: T) {
+		const eventBus = new EventBus();
+		this.tagName = tagName;
+		this._element = document.createElement("div");
+		this.eventBus = eventBus;
+		this.listeners = [];
+		this.props = this._makePropsProxy(props);
+		this._registerEvents(eventBus);
+		eventBus.emit(Block.EVENTS.INIT);
+	}
 
-        this._registerEvents(eventBus);
-        eventBus.emit(Block.EVENTS.INIT);
-    }
+	private _makePropsProxy(props: T): T {
+		const self = this;
 
-    _registerEvents(eventBus: EventBus) {
-        eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-    }
+		// lolkekcheburek техническая переменная
+		const lolkekcheburek = new Proxy(props, {
+			deleteProperty() {
+				throw new Error("нет доступа");
+			},
+			set(target, property, value) {
+				// @ts-expect-error
+				target[property] = value;
+				self.setProps(props);
+				return true;
+			},
+		});
 
-    _createResources() {
-        const { tagName } = this._meta;
-        this._element = this._createDocumentElement(tagName);
-    }
+		return lolkekcheburek;
+	}
 
-    init() {
-        this._createResources();
-        this.dispatchComponentDidMount();
-        this.eventBus.emit("flow:render");
-    }
+	setProps = (nextProps: T): void => {
+		if (!nextProps) {
+			return;
+		}
+		if (this.props == nextProps) {
+			return;
+		}
 
-    _componentDidMount() {
-        this.componentDidMount();
-    }
+		Object.assign(this.props, nextProps);
+		this.eventBus.emit(Block.EVENTS.FLOW_CDU, this.props, nextProps);
+	};
 
-    // Может переопределять пользователь, необязательно трогать
-    componentDidMount() {
-    }
+	private _registerEvents(eventBus: EventBus): void {
+		eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
+		eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+		eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+		eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+	}
 
-    dispatchComponentDidMount() {
-        this.eventBus.emit("flow:component-did-mount", this.props)
-    }
+	init(): void {
+		this._createResourses();
+		this.dispatchComponentDidMount();
+		this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
+	}
 
-    _componentDidUpdate() {
-        this.componentDidUpdate();
-    }
+	private _createResourses(): void {
+		this._element = this._createDocumentElement(this.tagName);
+	}
 
-    // Может переопределять пользователь, необязательно трогать
-    componentDidUpdate() {
-        this.eventBus.emit("flow:render")
-        return true;
-    }
+	_createDocumentElement(tagName: string): HTMLElement {
+		const newElement: HTMLElement = document.createElement(tagName),
+			classes: string[] = this.props.data.classList,
+			id: string = this.props.data.id;
 
-    setProps = (nextProps:{text: string}) => {
-        if (!nextProps) {
-            return;
-        } 
-        if (this.props.text == nextProps.text) {
-            return
-        }
-    
-        Object.assign(this.props, nextProps);
-        this.eventBus.emit('flow:component-did-update', this.props, nextProps)
-    };
+		if (classes) {
+			if (classes.length != 0)
+				classes.forEach((item: string) => {
+					newElement.classList.add(item);
+				});
+		}
+		if (id) {
+			newElement.id = id;
+		}
+		return newElement;
+	}
 
-    get element() {
-        return this._element;
-    }
+	private _componentDidMount(): void {
+		this.componentDidMount();
+	}
 
-    _render() {
-        const block = this.render();
-        
-        this._element.innerHTML = block;
-        // this._createDocumentElement()
-    }
+	componentDidMount(): void {}
 
-    // Может переопределять пользователь, необязательно трогать
-    render(): string {
-        return Handlebars.compile(this.props.tpl)(this.props.data)
-    }
+	dispatchComponentDidMount(): void {
+		// this.eventBus.emit(Block.EVENTS.FLOW_CDU);
+		this.eventBus.emit(Block.EVENTS.FLOW_CDM);
+	}
 
-    getContent() {
-        return this.element;
-    }
+	private _render(): void {
+		const block = this.render();
+		this._removeEvents();
+		this._element.innerHTML = block;
+		if (this.props.events) {
+			this.props.events.forEach((item: { [key: string]: any }) => {
+				const key = Object.keys(item)[0],
+					value = Object.values(item)[0];
+				this._addEvents(key, this._element, value);
+			});
+		}
+	}
 
-    _makePropsProxy(props: any) {           //  заглушка any
-        const self = this
+	render(): string {
+		return Handlebars.compile(this.props.tpl)(this.props.data);
+	}
 
-        // lolkekcheburek техническая переменная
-        const lolkekcheburek = new Proxy(props, {
-            deleteProperty(target, props) {
-                throw new Error('нет доступа')
-            },
-            set(target, prop, val) {
+	private _componentDidUpdate() {
+		this.componentDidUpdate();
+	}
 
-                props[prop] = val
-                self.setProps(props);
-                return true
-            }
-        })
+	componentDidUpdate(): boolean {
+		this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
+		return true;
+	}
 
-        return lolkekcheburek;
-    }
+	get element() {
+		return this._element;
+	}
 
-    _createDocumentElement(tagName:string) {
-        // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-        const newElement: HTMLElement = document.createElement(tagName),
-              classes:string[] = this.props.data.classList,
-              id: string = this.props.data.id;
-              
-        if (classes) {
-            if (classes.length != 0)
-                classes.forEach((item: string) => {
-                    newElement.classList.add(item)
-                })
-        }
-        if (id) {
-            newElement.id = id
-        }
-        return newElement
-    }
+	getContent(): HTMLElement {
+		return this.element;
+	}
+
+	_addEvents(
+		eventName: string,
+		element: HTMLElement,
+		callback: EventListenerOrEventListenerObject
+	) {
+		element.addEventListener(eventName, callback);
+		this.listeners.push({ callback, element, eventName });
+		return this;
+	}
+
+	_removeEvents() {
+		this.listeners.forEach(
+			(item: {
+				eventName: string;
+				element: HTMLElement;
+				callback: EventListenerOrEventListenerObject;
+			}) => {
+				item.element.removeEventListener(item.eventName, item.callback);
+			}
+		);
+	}
 }
-
-export default Block;

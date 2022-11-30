@@ -17,21 +17,21 @@ export const chatTpl: string = `
         {{{ ChatMessage }}}
     </div>
     <div id="message_div" class="chats-text-field"></div>
-`
+`;
 
 type ChatType = {
-    tpl: string,
-    data: {
-        classList: string[],
-        userName: string,
-        lastMessageDate: string,
-        messageText: string,
-        ChatMessage: string
-    }
+	tpl: string;
+	data: {
+		classList: string[];
+		userName: string;
+		lastMessageDate: string;
+		messageText: string;
+		ChatMessage: string;
+	};
 };
 
-export default class Chat extends Block {
-    constructor(props: ChatType) {
-        super('div', props)
-    }
+export default class Chat extends Block<ChatType> {
+	constructor(props: ChatType) {
+		super("div", props);
+	}
 }
