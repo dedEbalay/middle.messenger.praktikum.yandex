@@ -1,9 +1,9 @@
 import render from "./utils/renderDOM";
-import { loginTpl } from "./pages/Login/";
+import { loginTpl } from "./pages/Login";
 import Login from "./pages/Login";
-import { registrationTpl } from "./pages/Registration/registration";
+import { registrationTpl } from "./pages/Registration";
 import Registration from "./pages/Registration";
-import { chatTpl } from "./pages/Chat/";
+import { chatTpl } from "./pages/Chat";
 import Chat from "./pages/Chat";
 import { messageTpl } from "./components/ChatMessage/ChatMessage";
 import ChatMessage from "./components/ChatMessage";

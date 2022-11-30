@@ -1,5 +1,5 @@
-import { chatTpl } from "./chat";
-import Chat from "./chat";
+import { chatTpl } from "./Chat";
+import Chat from "./Chat";
 
 export { chatTpl };
 export default Chat;
