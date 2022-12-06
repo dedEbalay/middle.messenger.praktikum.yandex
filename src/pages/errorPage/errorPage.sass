@@ -1,0 +1,31 @@
+@import '../../mixins'
+
+.error-page
+    @include primaryBG
+    @include lightColor
+    height: 100vh
+    padding: 137px 134px 85px
+    &-container
+        display: flex
+        width: max-content
+        margin: auto
+    &__img
+        margin-right: 40px
+        background-repeat: no-repeat
+        align-self: center
+    &-description
+        align-self: center
+        max-width: 525px
+        text-align: center
+        &__title
+            font-size: 64px
+        &__text
+            font-size: 48px
+.error404
+    width: 643px
+    height: 598px
+    background-image: url("./src/beriya.png")
+.error500
+    width: 738px
+    height: 583px
+    background-image: url("./src/lenin.png")

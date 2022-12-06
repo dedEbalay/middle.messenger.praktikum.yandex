@@ -1,5 +1,5 @@
 @import '../../mixins'
-    
+
 .registration
     @include primaryBG
     height: 100vh
@@ -7,9 +7,9 @@
     align-items: center
     justify-content: center
     &-modal
+        @include lightBG
         height: max-content
         width: 1052px
-        @include lightBG
         border-radius: 10px
         padding: 25px 52px 44px 59px
         &__title
@@ -18,28 +18,30 @@
             text-align: center
             margin-bottom: 40px
         &-input
+            height: max-content
             display: flex
+            flex-wrap: wrap
             justify-content: space-between
             font-size: 32px
             line-height: 39px
             margin-bottom: 16px
             &__input
+                @include inputColor
+                @include primaryBR
                 width: 500px
                 height: 57px
-                @include primaryBR
+                margin-bottom: 2px
                 border-radius: 6px
-                background-color: #EDF6F5
                 padding: 12px 19px
                 font-size: inherit
                 line-height: inherit
         &__button
+            @include signInBtnColor
             cursor: pointer
             margin-top: 33px
             width: 100%
             height: 65px
             border-radius: 10px
-            background-color: #CB5959
-            color: #F5FA00
             padding: 11px 196px
             font-size: 40px
             line-height: 40px

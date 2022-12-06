@@ -1,36 +1,42 @@
 .chats {
   height: 100vh;
   display: grid;
-  grid-template: 1fr 54px/457px 1fr;
+  grid-template: 1fr 65px/457px 1fr;
 }
+
 .chats-avatar {
   border-radius: 50%;
   background-size: cover;
 }
+
 .chats-field {
+  background-color: #d9d9d9;
+  border: 1px solid #303635;
   width: 457px;
   height: 100%;
-  background-color: #D9D9D9;
   display: flex;
   flex-direction: column;
   grid-row: 1/3;
-  border: 1px solid #303635;
 }
+
 .chats-field-user {
   display: flex;
   justify-content: space-between;
   padding: 5px 5px 10px;
 }
+
 .chats-field-user__avatar {
-  background-image: url(./src/solzh.jpg);
+  background-image: url("./src/solzh.jpg");
   width: 77px;
   height: 77px;
 }
+
 .chats-field-user__settings {
-  background-image: url(./src/gear.svg);
+  background-image: url("./src/gear.svg");
   height: 72px;
   width: 72px;
 }
+
 .chats-field-item {
   color: #454444;
   width: 100%;
@@ -38,32 +44,35 @@
   display: grid;
   grid-template: 30px 30px/68px 312px 58px;
 }
+
 .chats-field-item__avatar {
-  background-image: url(./src/stalin.jpg);
+  background-image: url("./src/stalin.jpg");
   width: 60px;
   height: 60px;
   grid-row: 1/3;
 }
+
 .chats-field-item__text {
   grid-column: 2/4;
   font-size: 16px;
   line-height: 19px;
   align-self: center;
 }
+
 .chats-field-item__title {
   font-size: 20px;
   line-height: 24px;
   align-self: center;
 }
+
 .chats-field-item__date {
   font-size: 16px;
   line-height: 19px;
   align-self: center;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   margin: auto;
 }
+
 .chats-message-field {
   background-color: #641010;
   width: 100%;
@@ -71,20 +80,29 @@
   flex-direction: column-reverse;
   padding: 26px 20px;
 }
+
 .chats-message-field__message {
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   border-radius: 9px;
   padding: 7px 8px;
   width: 45%;
 }
+
 .chats-text-field {
+  position: relative;
   width: 100%;
+  height: 100%;
+  align-self: end;
+}
+
+.chats-text-field__form {
   height: 100%;
 }
+
 .chats-text-field__input {
+  background-color: #d9d9d9;
   width: 100%;
   height: 100%;
-  background: #D2CECE;
   border: none;
   padding: 11px 37px;
-}/*# sourceMappingURL=chats.css.map */
+}

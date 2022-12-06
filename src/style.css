@@ -1,10 +1,64 @@
-@import './pages/login/login.css';
-@import './pages/chat/chats.css';
-@import './pages/registration/registration.css';
+@import url("./pages/Login/login.css");
+@import url("./pages/Chat/chats.css");
+@import url("./pages/Registration/registration.css");
+@import url("./pages/ErrorPage/errorPage.css");
+@import url("./pages/Profile/profile.css");
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Inter',  sans-serif;
+  font-family: Inter, sans-serif;
+}
+
+input {
+  position: relative;
+}
+
+.error {
+  color: red;
+  border-color: red;
+  background-color: rgb(236 156 156);
+}
+
+.error--top {
+  position: absolute;
+  top: -17 !important;
+  margin: 0 !important;
+}
+
+.error__message {
+  flex-basis: 100%;
+  line-height: 20px !important;
+  font-size: 14px;
+  background-color: rgb(218 149 149);
+  margin: auto;
+  top: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.header {
+  background-color: #641010;
+  color: #e3e2bd;
+  height: 50px;
+}
+
+.header-nav__ul {
+  padding-left: 50px;
+  padding-right: 50px;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  height: 100%;
+}
+
+.header-nav {
+  height: 100%;
+}
+
+.header-nav__link {
+  align-self: center;
+  text-decoration: none;
+  cursor: pointer;
 }

@@ -1,0 +1,74 @@
+@import '../../mixins'
+
+.profile
+   @include lightBG
+   padding: 29px 25px 17px
+   position: absolute
+   z-index: 1
+   top: 25%
+   left: 25%
+   border-radius: 10px
+   border: 1px solid black
+   height: max-content
+   width: 484px
+   &-img-block
+      margin: auto
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      width: 229px
+      height: 197px
+      &__img
+         margin: 0
+         align-self: center
+         max-width: 100%
+         max-height: 100%
+         width: 160px
+         height: 160px
+         border-radius: 50%
+      &__btn
+         @include darkColor
+         background-color: transparent
+         margin: 0
+         font-size: 16px
+         font-weight: 400
+         line-height: 19px
+         letter-spacing: 0em
+         text-align: center
+         border: none
+         padding: 18px 0
+   &-info-block
+      &__button
+         @include darkColor
+         margin-top: 11px
+         border-radius: 10px
+         border-color: transparent
+         width: 435px
+         height: 48px
+         background-color: #BABD34
+         font-weight: 400
+         font-size: 32px
+         align-items: center
+         text-align: center
+      &__item
+         flex-wrap: wrap
+         @include darkColor
+         display: flex
+         justify-content: space-between
+         font-style: normal
+         font-weight: 400
+         font-size: 18px
+         line-height: 22px
+         align-items: center
+         width: 435px
+         height: max-content
+         margin-bottom: 7px
+      &-item
+         &__title
+            width: 132px
+         &__input
+            @include inputColor
+            @include primaryBR
+            padding: 1px 6px
+            border-radius: 6px
+            width: 297px
