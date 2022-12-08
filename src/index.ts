@@ -1,21 +1,21 @@
 import render from "./utils/renderDOM";
-import { loginTpl } from "./pages/Login";
-import { registrationTpl } from "./pages/Registration";
-import { chatTpl } from "./pages/Chat";
-import Chat from "./pages/Chat";
+import { loginTpl } from "./pages/login";
+import { registrationTpl } from "./pages/registration";
+import { chatTpl } from "./pages/chat";
+import Chat from "./pages/chat";
 import { messageTpl } from "./components/ChatMessage/ChatMessage";
 import ChatMessage from "./components/ChatMessage";
 import Input from "./components/Input";
 import Button from "./components/Button";
-import ErrorPage from "./pages/ErrorPage";
-import { errorTpl } from "./pages/ErrorPage";
+import ErrorPage from "./pages/errorPage";
+import { errorTpl } from "./pages/errorPage";
 import Form from "./components/Form";
 import {
 	blurValidation,
 	closeModal,
 	submitValidation,
 } from "./utils/eventListeners";
-import Profile, { profileFormTpl, profileTpl } from "./pages/Profile";
+import Profile, { profileFormTpl, profileTpl } from "./pages/profile";
 
 const login = new Form({
 		tpl: loginTpl,
